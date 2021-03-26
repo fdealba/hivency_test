@@ -23,6 +23,15 @@ Create local db + execute migrations:
 ``` rails db:create db:migrate```
 
 
+To run the application in localhost (port 3000):
+
+``` rails s ```
+
+To run tests:
+
+``` rspec ```
+
+
 API request testing recomendation: Postman (Chrome extension).
 
 ``` https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=es ```
