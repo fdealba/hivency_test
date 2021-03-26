@@ -1,24 +1,28 @@
-# README
+Ruby Version:
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+``` 2.6.6 ```
 
-Things you may want to cover:
+Ruby on Rails version:
 
-* Ruby version
+``` 6.1.3 ```
 
-* System dependencies
+Needed:
 
-* Configuration
+``` Bundler | PostgreSQL ```
 
-* Database creation
+To run this project locally first clone it:
 
-* Database initialization
+``` git clone https://github.com/fdealba/hivency_test.git ```
 
-* How to run the test suite
+then
 
-* Services (job queues, cache servers, search engines, etc.)
+``` bundle ```
 
-* Deployment instructions
+Create local db + execute migrations:
 
-* ...
+``` rails db:create db:migrate```
+
+
+API request testing recomendation: Postman (Chrome extension).
+
+``` https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=es ```
