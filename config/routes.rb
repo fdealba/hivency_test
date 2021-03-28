@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   namespace :api, defaults: { format: 'json' } do
     namespace :v1 do
       #Post Requests
-      post 'new', to: 'games#new'
+      post 'play', to: 'games#new'
       #Get Requests
-      get 'index', to: 'games#index'
+      get 'games_history', to: 'games#index'
     end
   end
 end
