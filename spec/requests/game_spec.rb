@@ -40,17 +40,17 @@ describe 'Games API', type: :request do
     end
   end
 
-  describe 'POST /play' do
-    it 'creates a play game successfully' do
+  describe 'POST /new_game' do
+    it 'creates a new_game game successfully' do
       expect {
-        post '/api/v1/play', params: { name: 'felipe', move: 'scissors' }
+        post '/api/v1/new_game', params: { name: 'felipe', move: 'scissors' }
       }.to change { Game.count }.from(0).to(1)
 
       expect(response).to have_http_status(:created)
     end
 
     it 'correctly computes the game result' do
-      post '/api/v1/play', params: { name: 'felipe', move: 'scissors' }
+      post '/api/v1/new_game', params: { name: 'felipe', move: 'scissors' }
 
       parsed_response = JSON.parse(response.body)
       computer_move = parsed_response["moves"][1]["move"]
@@ -68,13 +68,13 @@ describe 'Games API', type: :request do
 
     it 'returns a validation error if request move input is incorrect' do
       expect {
-        post '/api/v1/play', params: { name: 'felipe', move: 'asd' }
+        post '/api/v1/new_game', params: { name: 'felipe', move: 'asd' }
       }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Player move is not included in the list")
     end
 
     it 'returns a validation error if request is missing a name' do
       expect {
-        post '/api/v1/play', params: { name: '', move: 'rock' }
+        post '/api/v1/new_game', params: { name: '', move: 'rock' }
       }.to raise_error(ActiveRecord::RecordInvalid, "Validation failed: Player name can't be blank")
     end
   end
