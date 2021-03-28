@@ -23,7 +23,7 @@ class Game < ApplicationRecord
     end
   end
 
-  def as_json
+  def serializable_hash(*)
     {
       "moves": [
         {
