@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2021_03_26_141647) do
     t.string "player_name"
     t.string "player_move"
     t.string "computer_move"
-    t.string "result"
+    t.integer "result"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

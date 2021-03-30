@@ -1,41 +1,26 @@
 class Game < ApplicationRecord
-  before_save :compute_result
+  before_save :determine_result
+
   VALID_MOVES = %w[rock paper scissors]
 
-  validates :player_name, presence: :true
+  validates_presence_of :player_name
   validates :player_move, inclusion: { in: VALID_MOVES }
   validates :computer_move, inclusion: { in: VALID_MOVES }
 
-  def compute_result
-    if self.player_move == self.computer_move
-      self.result = "Tie"
-    else
-      player_wins = "#{self.player_name} Wins!"
-      computer_wins = "Bot Wins!"
+  enum result: %i[tie player_wins computer_wins]
 
-      result = {
-        rock: self.computer_move == "scissors" ? player_wins : computer_wins,
-        scissors: self.computer_move == "rock" ? computer_wins : player_wins,
-        paper: self.computer_move == "scissors" ? computer_wins : player_wins
-      }
+  def determine_result
+    return self.result = :tie if player_move == computer_move
 
-      self.result = result[self.player_move.to_sym]
-    end
+    results = {
+      rock: computer_move == "paper" ? :computer_wins : :player_wins,
+      paper: computer_move == "scissors" ? :computer_wins : :player_wins,
+      scissors: computer_move == "rock" ? :computer_wins : :player_wins
+    }
+    self.result = results[player_move.to_sym]
   end
 
-  def serializable_hash(*)
-    {
-      "moves": [
-        {
-          "name": self.player_name,
-          "move": self.player_move
-        },
-        {
-          "name": "Bot",
-          "move": self.computer_move
-        }
-      ],
-      "result": self.result
-    }
+  def compute_result
+    { computer_wins: "Bot Wins!", player_wins: "#{player_name} Wins!", tie: "Tie!" }[result.to_sym]
   end
 end

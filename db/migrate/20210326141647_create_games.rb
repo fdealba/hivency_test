@@ -4,7 +4,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.string :player_name
       t.string :player_move
       t.string :computer_move
-      t.string :result
+      t.integer :result
       t.timestamps
     end
   end

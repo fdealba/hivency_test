@@ -1,0 +1,13 @@
+{
+  moves: [
+    {
+      name: @game.player_name,
+      move: @game.player_move
+    },
+    {
+      name: "Bot",
+      move: @game.computer_move
+    }
+  ],
+  result: @game.compute_result
+}

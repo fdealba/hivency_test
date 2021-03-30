@@ -1,0 +1,29 @@
+games = @games.map do |game|
+  {
+    moves: [
+      {
+        name: game.player_name,
+        move: game.player_move
+      },
+      {
+        name: "Bot",
+        move: game.computer_move
+      }
+    ],
+    result: game.compute_result,
+    created_at: game.created_at,
+    updated_at: game.updated_at
+  }
+end
+
+pagination_data = {
+  current_page: @games.current_page,
+  games_per_page: @per_page,
+  total_pages: @games.total_pages,
+  total_games: @games.total_count
+}
+
+{
+  games: games,
+  pagination_data: pagination_data
+}
